@@ -1,6 +1,7 @@
+String msg1="hello"
+String msg2="welcome to arduino"
 void setup() {
-  // put your setup code here, to run once:
-
+  Serial.begin(96)
 }
 
 void loop() {
