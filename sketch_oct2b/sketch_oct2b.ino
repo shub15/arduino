@@ -16,9 +16,9 @@ void loop() {
 
     if (currentA != lastA) {
         if (currentB != currentA) {
-            encoderPos++; // Clockwise
+            encoderPos++;
         } else {
-            encoderPos--; // Counter-clockwise
+            encoderPos--;
         }
         Serial.print("Encoder Position: ");
         Serial.println(encoderPos);
