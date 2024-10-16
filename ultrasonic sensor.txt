@@ -1,0 +1,12 @@
+ultrasonic sound at 40k hz
+
+
+Gyro X: 147 | Gyro Y: 3 | Gyro Z: 224
+Gyro X: 146 | Gyro Y: 133 | Gyro Z: 153
+Accel X: 16660 | Accel Y: 216 | Accel Z: -680
+Gyro X: 121 | Gyro Y: 0 | Gyro Z: 178
+Accel X: 16628 | Accel Y: 316 | Accel Z: -624
+Gyro X: 129 | Gyro Y: 10 | Gyro Z: 166
+
+
+ 7C66EF7876F0
