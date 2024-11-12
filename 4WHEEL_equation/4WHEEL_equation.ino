@@ -82,10 +82,10 @@ void loop() {
   float vy = xL;
   float wz = xR;
 
-  float omega1 = (-vx - vy + wz * (lx + ly)) * 4 / wheel_radius * speed_factor;  // Front-left
-  float omega2 = (-vx + vy - wz * (lx + ly)) * 4 / wheel_radius * speed_factor;  // Front-right
-  float omega3 = (-vx + vy + wz * (lx + ly)) * 4 / wheel_radius * speed_factor;  // Back-right
-  float omega4 = (-vx - vy - wz * (lx + ly)) * 4 / wheel_radius * speed_factor;  // Back-left
+  float omega1 = (-vx - vy + wz * (lx + ly)) * 4 / wheel_radius;  // Front-left
+  float omega2 = (-vx + vy - wz * (lx + ly)) * 4 / wheel_radius;  // Front-right
+  float omega3 = (-vx + vy + wz * (lx + ly)) * 4 / wheel_radius;  // Back-right
+  float omega4 = (-vx - vy - wz * (lx + ly)) * 4 / wheel_radius;  // Back-left
 
   // float maxOmega = max(max(abs(omega1), abs(omega2)), max(abs(omega3), abs(omega4)));
   // if (maxOmega > maxPwm) {
