@@ -40,14 +40,27 @@ void receiveEvent(int bytes) {
     yR = Wire.read();
 
     if (abs(xL) < deadzone) xL = 0;
+    else if (xL > 0) xL -= deadzone;
+    else if (xL < 0) xL += deadzone;
+
     if (abs(yL) < deadzone) yL = 0;
+    else if (yL > 0) yL -= deadzone;
+    else if (yL < 0) yL += deadzone;
+
     if (abs(xR) < deadzone) xR = 0;
+    else if (xR > 0) xR -= deadzone;
+    else if (xR < 0) xR += deadzone;
+
     if (abs(yR) < deadzone) yR = 0;
+    else if (yR > 0) yR -= deadzone;
+    else if (yR < 0) yR += deadzone;
+
     circle = Wire.read();
   }
 }
 
 void setMotor(int dirPin, int speedPin, float speed) {
+  constrain(speed, -maxPwm, maxPwm);
   if (speed >= 0) {
     digitalWrite(dirPin, LOW);
     // analogWrite(speedPin, min(speed, maxPwm));
