@@ -24,8 +24,9 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("Encoder Position: ");
-  Serial.println(encoderPos);
+  // Serial.print("Encoder Position: ");
+  // Serial.println(encoderPos);
+  Serial.println(circle);
   if (circle == 1) {
       rotateMotorOneTurn(1);
   } else {
@@ -36,7 +37,7 @@ void loop() {
 }
 
 void receiveEvent(int bytes) {
-  if (Wire.available() >= 2) {
+  if (Wire.available() >= 3) {
     long highByte = Wire.read();
     long lowByte = Wire.read();
     circle = Wire.read();
@@ -52,7 +53,7 @@ void rotateMotorOneTurn(int direction) {
   }
 
   analogWrite(PWM_PIN, MOTOR_SPEED);
-  delay(1000);
+  // delay(1000);
   stopMotor();
 }
 

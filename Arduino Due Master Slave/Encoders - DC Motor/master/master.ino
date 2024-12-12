@@ -24,31 +24,13 @@ void setup() {
 
 void receiveEvent(int bytes) {
   while (Wire.available()) {
-    int8_t x1 = Wire.read();
-    int8_t y1 = Wire.read();
-    int8_t x2 = Wire.read();
-    int8_t y2 = Wire.read();
     circle = Wire.read();
-    // Serial.print("Joystick L X: ");
-    // Serial.println(x1); 
-    // Serial.print("Joystick R Y: ");
-    // Serial.println(y2);
-    // Serial.print(x1);
-    // Serial.print(" ");
-    // Serial.print(y1);
-    // Serial.print(" ");
-    // Serial.print(x2);
-    // Serial.print(" ");
-    // Serial.print(y2);
-    // Serial.print(" ");
-    // Serial.print(circle);
-    // Serial.println(" ");
   }
 }
 
 void loop() {
-  Serial.print("Encoder Position: ");
-  Serial.println(count1);
+  // Serial.print("Encoder Position: ");
+  // Serial.println(count1);
   // delay(500);
 
   // Serial.println("Sending data to Slave...");
@@ -57,11 +39,12 @@ void loop() {
   Wire1.write((count1 >> 8) & 0xFF); // Send the high byte
   Wire1.write(count1 & 0xFF); 
   Wire1.write(circle); 
-  byte error = Wire1.endTransmission();
-  if (error != 0) {
-    Serial.print("I2C Transmission Error: ");
-    Serial.println(error);
-  }
+  // byte error = Wire1.endTransmission();
+  Wire1.endTransmission();
+  // if (error != 0) {
+  //   Serial.print("I2C Transmission Error: ");
+  //   Serial.println(error);
+  // }
   // delay(10);
 
   // delay(500);
