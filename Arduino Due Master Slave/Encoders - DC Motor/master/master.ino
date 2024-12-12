@@ -62,7 +62,7 @@ void loop() {
     Serial.print("I2C Transmission Error: ");
     Serial.println(error);
   }
-  delay(10);
+  // delay(10);
 
   // delay(500);
 
