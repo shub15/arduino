@@ -3,7 +3,8 @@
 const int pinA = 2;
 const int pinB = 3;
 
-int8_t circle;
+int8_t circle = 0;
+int8_t cross = 0;
 
 volatile long count1 = 0;
 // volatile int lastState = LOW;
@@ -27,7 +28,9 @@ void receiveEvent(int bytes) {
   // }
   while (Wire.available()) {
     circle = Wire.read();
-    Serial.println(circle);
+    cross = Wire.read();
+    Serial.print(circle);
+    Serial.println(cross);
   }
 }
 
@@ -39,9 +42,10 @@ void loop() {
   // Serial.println("Sending data to Slave...");
 
   Wire1.beginTransmission(7);
-  Wire1.write((count1 >> 8) & 0xFF);  // Send the high byte
-  Wire1.write(count1 & 0xFF);
+  // Wire1.write((count1 >> 8) & 0xFF);  // Send the high byte
+  // Wire1.write(count1 & 0xFF);
   Wire1.write(circle);
+  Wire1.write(cross);
   byte error = Wire1.endTransmission();
   // Wire1.endTransmission();
   if (error != 0) {

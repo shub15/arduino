@@ -19,7 +19,7 @@ void receiveEvent(int bytes) {
   }
 }
 
-void loop() {  
+void loop() {
   // Serial.println("Sending data to slave...");
   // delay(100);
 
