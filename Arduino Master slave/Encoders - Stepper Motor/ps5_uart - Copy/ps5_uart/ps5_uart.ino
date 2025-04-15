@@ -58,10 +58,10 @@ void send(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j, 
 }
 
 void setup() {
-  Serial.begin(115200);
-  Serial2.begin(57600, SERIAL_8N1, RXp2, TXp2);
-  // ps5.begin("7C:66:EF:78:76:F0");  //  MAC Address of PS5 Controller is 7C:66:EF:78:76:F0
-  ps5.begin("e8:47:3a:5a:a3:66");  //  MAC Address of PS5 R1 Controller is e8:47:3a:5a:a3:66
+  Serial.begin(9600);
+  Serial2.begin(115200, SERIAL_8N1, RXp2, TXp2);
+  ps5.begin("7C:66:EF:78:76:F0");  //  MAC Address of PS5 Controller is 7C:66:EF:78:76:F0
+  // ps5.begin("e8:47:3a:5a:a3:66");  //  MAC Address of PS5 R1 Controller is e8:47:3a:5a:a3:66
 
   //e8:47:3a:5a:a3:66
 }

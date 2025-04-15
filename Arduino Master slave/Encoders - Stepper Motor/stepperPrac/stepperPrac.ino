@@ -1,6 +1,6 @@
 int enablePin = 7;
 int directionPin = 13;
-int pulsePin = 11;
+int pulsePin = 12;
 // int led = 13;
 void setup() {
   pinMode(enablePin,OUTPUT);
@@ -12,7 +12,7 @@ void setup() {
 
 void loop() {
   digitalWrite(directionPin,HIGH);
-  for(int i=0;i<100;i++)
+  // for(int i=0;i<100;i++)
   {
     digitalWrite(pulsePin,HIGH);
    delayMicroseconds(1000);

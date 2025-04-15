@@ -12,6 +12,7 @@ float speed_factor = 0.5;
 int maxPwm = 100;
 int deadzone = 50;
 float wheel_radius = 0.075;
+
 float lX = 0.15;
 float lY = 0.15;
 
@@ -40,38 +41,27 @@ void setup() {
 }
 
 void setMotor(int dirPin, int speedPin, float speed) {
-  constrain(speed, -maxPwm, maxPwm);
+  // constrain(speed, -maxPwm, maxPwm);
   if (speed >= 0) {
     digitalWrite(dirPin, LOW);
     analogWrite(speedPin, min(speed, maxPwm));
     // analogWrite(speedPin, speed);
-  } else {
+  } else if (speed < 0) {
     digitalWrite(dirPin, HIGH);
     analogWrite(speedPin, min(-speed, maxPwm));
     // analogWrite(speedPin, -speed);
+  } else {
+    analogWrite(speedPin, 0);
   }
 }
 
 void loop() {
-  // if (abs(lx) < deadzone) lx = 0;
-  // else if (lx > 0) lx -= deadzone;
-  // else if (lx < 0) lx += deadzone;
-
-  // if (abs(ly) < deadzone) ly = 0;
-  // else if (ly > 0) ly -= deadzone;
-  // else if (ly < 0) ly += deadzone;
-
-  // if (abs(rx) < deadzone) rx = 0;
-  // else if (rx > 0) rx -= deadzone;
-  // else if (rx < 0) rx += deadzone;
-
-  // if (abs(ry) < deadzone) ry = 0;
-  // else if (ry > 0) ry -= deadzone;
-  // else if (ry < 0) ry += deadzone;
+  
 
 
 
   fetch_data();
+  // Serial.println(datain);
   parse_data(datain);
   ps_print();
 
@@ -98,6 +88,12 @@ void loop() {
   Wire.write(ly);
   Wire.write(rx);
   Wire.write(ry);
+  Wire.write(up);
+  Wire.write(down);
+  Wire.write(left);
+  Wire.write(right);
+  Wire.write(tri);
+  Wire.write(squ);
   Wire.write(circle);
   Wire.write(cross);
   byte error = Wire.endTransmission();
@@ -110,14 +106,14 @@ void loop() {
   // float vx = map(yL, -128, 127, -maxPwm, maxPwm);  // Forward/backward
   // float vy = map(xL, -128, 127, -maxPwm, maxPwm);  // Left/right strafing
   // float wz = map(xR, -128, 127, -maxPwm, maxPwm);  // Rotation
-  // float vx = ly;
-  // float vy = lx;
-  // float wz = rx;
+  float vx = ly;
+  float vy = lx;
+  float wz = rx;
 
-  // float omega1 = (-vx - vy + wz * (lX + lY)) * 4 / wheel_radius;  // Front-left
-  // float omega2 = (-vx + vy - wz * (lX + lY)) * 4 / wheel_radius;  // Front-right
-  // float omega3 = (-vx + vy + wz * (lX + lY)) * 4 / wheel_radius;  // Back-right
-  // float omega4 = (-vx - vy - wz * (lX + lY)) * 4 / wheel_radius;  // Back-left
+  float omega1 = (-vx - vy + wz * (lX + lY)) * 4 / wheel_radius;  // Front-left
+  float omega2 = (-vx + vy - wz * (lX + lY)) * 4 / wheel_radius;  // Front-right
+  float omega3 = (-vx + vy + wz * (lX + lY)) * 4 / wheel_radius;  // Back-right
+  float omega4 = (-vx - vy - wz * (lX + lY)) * 4 / wheel_radius;  // Back-left
 
   // float maxOmega = max(max(abs(omega1), abs(omega2)), max(abs(omega3), abs(omega4)));
   // if (maxOmega > maxPwm) {
@@ -127,8 +123,8 @@ void loop() {
   //   omega4 = omega4 * maxPwm / maxOmega;
   // }
 
-  // setMotor(motorfrontdir1, motorfrontspeed1, omega1);
-  // setMotor(motorfrontdir2, motorfrontspeed2, omega2);
-  // setMotor(motorbackdir1, motorbackspeed1, omega3);
-  // setMotor(motorbackdir2, motorbackspeed2, omega4);
+  setMotor(motorfrontdir1, motorfrontspeed1, omega1);
+  setMotor(motorfrontdir2, motorfrontspeed2, omega2);
+  setMotor(motorbackdir1, motorbackspeed1, omega3);
+  setMotor(motorbackdir2, motorbackspeed2, omega4);
 }

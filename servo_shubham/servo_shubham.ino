@@ -3,11 +3,16 @@
 Servo serv;
 
 void setup() {
-  serv.attach(7);
+  serv.attach(9);
 }
 
 void loop() {
   serv.write(0);
-  serv.write(360);
   delay(500);
+  serv.write(90);
+  delay(500);
+  serv.write(180);
+  delay(500);
+  // serv.write(90);
+  // serv.write(0);
 }
