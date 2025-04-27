@@ -4,13 +4,14 @@
 void setup() {
   Wire.begin();
   Serial.begin(115200);
-  // ps5.begin("e8:47:3a:5a:a3:66");
-  ps5.begin("7c:66:ef:78:76:f0");
+  ps5.begin("e8:47:3a:5a:a3:66");
+  // ps5.begin("7c:66:ef:78:76:f0");
 }
 
 void loop() {
   if (ps5.isConnected()) {
-    Wire.beginTransmission(8);
+    // Wire.beginTransmission(8);
+    Wire.beginTransmission(0x10);
     Wire.write(ps5.LStickX());
     Wire.write(ps5.LStickY());
     Wire.write(ps5.RStickX());
